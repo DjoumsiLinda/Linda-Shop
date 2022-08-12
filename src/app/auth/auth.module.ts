@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
+import { NbAuthModule } from '@nebular/auth';
 import {
   NbAlertModule,
   NbButtonModule,
@@ -24,7 +25,8 @@ import { LoginComponent } from './login/login.component';
     NbInputModule,
     NbButtonModule,
     NbCheckboxModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    NbAuthModule,
   ],
 })
 export class AppAuthModule {}

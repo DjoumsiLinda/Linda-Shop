@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NbRoleProvider, NbAccessChecker, NbAclService, NbSecurityModule } from '@nebular/security';
 import { NbActionsModule, NbUserModule, NbIconModule, NbThemeModule, NbContextMenuModule,NbCardModule,
-  NbMenuModule, NbSidebarModule, NbLayoutModule, } from '@nebular/theme';
+  NbMenuModule, NbSidebarModule,NbSelectModule, NbLayoutModule,NbPopoverModule,NbDatepickerModule,NbSpinnerModule, NbDialogModule, NbWindowModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 import { ThemeModule } from './@theme/theme.module';
 import { AuthGuard } from './auth-guard.service';
+import { AUTH_STRATEGY } from './shared/constants/constants.ts';
+import { TokenInterceptor } from './interceptor/token-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { RoleProvider } from './auth/provider/role.provider';
 import { AccessChecker } from './auth/services/access-checker.service';
@@ -27,30 +31,33 @@ const formSetting: any = {
     AppComponent
   ],
   imports: [
-    NbActionsModule,
-    NbUserModule,
-    NbEvaIconsModule,
-    NbIconModule,
-    NbCardModule,
-    NbContextMenuModule,
-    NbMenuModule.forRoot(),
-    NbSidebarModule.forRoot(),
-    NbThemeModule.forRoot({ name: 'default' }),
-    ThemeModule.forRoot(),
-    NbLayoutModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppPagesModule,
+    HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NbSelectModule,
+    NbEvaIconsModule,
+    NbSecurityModule.forRoot(),
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbDatepickerModule.forRoot(),
+    NbDialogModule.forRoot(),
+    NbWindowModule.forRoot(),
+    NbToastrModule.forRoot(),
+    NbSpinnerModule,
+    NbPopoverModule,
+    ThemeModule.forRoot(),
     NbAuthModule.forRoot({
       strategies: [
         NbPasswordAuthStrategy.setup({
-          name: 'email',
+          name: AUTH_STRATEGY,
           token: {
             class: NbAuthJWTToken,
-            key: 'content',
+            key: 'key',
           },
-          baseEndpoint: '/auth/',
+          baseEndpoint: '/auth',
           login: {
             endpoint: '/security/token/',
             method: 'post',
@@ -78,10 +85,11 @@ const formSetting: any = {
       },
     }),
   ],
-  providers: [
+  providers: [AuthGuard,
     { provide: NbRoleProvider, useClass: RoleProvider },
     { provide: NbAccessChecker, useClass: AccessChecker },
-    { provide: NbAclService}
+    { provide: NbAclService},
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

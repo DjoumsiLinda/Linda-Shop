@@ -22,6 +22,7 @@ import { map } from 'rxjs/operators';
    * @param {string} resource
    * @returns {Observable<boolean>}
    */
+
   override isGranted(permission: string, resource: string): Observable<boolean> {
     var result: boolean = true;
 
@@ -34,6 +35,4 @@ import { map } from 'rxjs/operators';
 
     return of(result);
   }
-
-
 }

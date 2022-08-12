@@ -14,11 +14,13 @@ import {tap} from "rxjs/operators";
   styleUrls: ['./login.component.scss']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent extends NbLoginComponent {
 
-  ngOnInit(): void {
-    //console.log(this.route.url);
+  override strategy = AUTH_STRATEGY;
+
+  public constructor(service: NbAuthService, @Inject(NB_AUTH_OPTIONS) options: {}, cd: ChangeDetectorRef, router: Router, private titleService: Title) {
+    super(service, options, cd, router);
+
+    this.titleService.setTitle("Anmeldung");
   }
-
-
 }
