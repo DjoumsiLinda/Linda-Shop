@@ -26,3 +26,6 @@ $nb-themes: nb-register-theme((
   color-primary-800: #937500,
   color-primary-900: #7A5F00,
 ), default, default);
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

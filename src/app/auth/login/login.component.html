@@ -1,1 +1,22 @@
-<p>login work</p>
+<div class="col-md-6">
+  <div class="card">
+      <div class="text-center">
+        <h1>Login</h1>
+        <h6>Please enter your email & password</h6>
+      </div>
+    <form>
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" aria-describedby="emailHelp">
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+
+    </form>
+    <a style="color:#fff; margin-top:10px" routerLink="/auth/register/">New user? Click here to sign up!</a>
+  </div>
+</div>

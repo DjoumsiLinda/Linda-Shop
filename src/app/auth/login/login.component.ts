@@ -16,6 +16,9 @@ import {tap} from "rxjs/operators";
 
 export class LoginComponent implements OnInit{
 
+  /*https://www.youtube.com/watch?v=7DzdebaSgxg
+    https://www.youtube.com/watch?v=rBNOc4ymd1E
+  https://www.youtube.com/watch?v=eMJ5spB3P1c */
   ngOnInit(): void {
   }
 }

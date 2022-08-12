@@ -3,19 +3,27 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
-import { NbAuthModule } from '@nebular/auth';
 import {
   NbAlertModule,
   NbButtonModule,
   NbCheckboxModule,
-  NbInputModule
+  NbInputModule,
+  NbCardModule,
+  NbSpinnerModule,
+  NbAccordionModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbLayoutModule,
+  NbOptionModule, NbSearchModule, NbListModule, NbSelectModule
 } from '@nebular/theme';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +34,16 @@ import { LoginComponent } from './login/login.component';
     NbButtonModule,
     NbCheckboxModule,
     AuthRoutingModule,
-    NbAuthModule,
+    NbCardModule,
+    NbSpinnerModule,
+    NbAccordionModule,
+    NbDatepickerModule,
+    NbDialogModule,
+    NbLayoutModule,
+    NbOptionModule,
+    NbSearchModule,
+    NbListModule,
+    NbSelectModule,
   ],
 })
 export class AppAuthModule {}
