@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import {AuthGuard} from "../auth-guard.service";
 
 const routes: Routes = [
   {
@@ -20,5 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule {
-}
+export class PagesRoutingModule { }
