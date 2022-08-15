@@ -17,17 +17,21 @@ body {
   min-height: 100vh;
   height: auto;
   overflow: hidden;
+  color: nb-theme(text-hint-color);
 
 }
 
 header {
-  background-color: aqua;
+  background: linear-gradient(90deg, aqua 10%, orange 60%, chartreuse 100%);
   display: grid;
   grid-gap: 8px;
   grid-template-columns: 500px 1fr;
   grid-template-rows:  1fr;
   font-size: 1.25rem;
   border-bottom: 0.5px ridge black;
+  h2{
+    font-size: 1.5rem;
+  }
   .logo-container {
     grid-column-start: 1/2;
     justify-self: left; /* horizontal */
@@ -40,12 +44,13 @@ header {
 
   .logo {
     padding: 0 0.25rem;
-    font-size: 1.75rem;
     margin-right: 20px;
     white-space: nowrap;
     text-decoration: none;
   }
-
+  .logo h2{
+    font-size: 2rem;
+  }
   .dienste{
     grid-column-end: 2/-2;
     justify-self: right; /* horizontal */
@@ -55,10 +60,11 @@ header {
     flex-direction: row;
     justify-content: space-evenly;
   }
-  .dienste a{
+  a{
     text-align: center;
+    text-decoration: none;
+    color: nb-theme(text-hint-color);
   }
-
 }
 
 main {
@@ -67,13 +73,14 @@ main {
 
 footer {
   border-top: 0.5px ridge black;
-  background-color: rgb(150, 280, 0);
+  background: linear-gradient(90deg, aqua 10%, chartreuse 60%, green 100%);
   font-size: 1.15rem;
   display: flex;
   justify-content: center;
   align-items: center;
   .logo{
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    font-weight: bold;
     padding: 0 0.55rem;
   }
   a{
