@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
 import {
@@ -18,12 +18,14 @@ import {
 } from '@nebular/theme';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { RegisterComponent } from './register/register.component';
     NbSearchModule,
     NbListModule,
     NbSelectModule,
+    ReactiveFormsModule,
   ],
 })
 export class AppAuthModule {}

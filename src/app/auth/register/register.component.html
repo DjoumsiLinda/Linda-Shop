@@ -1,1 +1,49 @@
-<p>register works!</p>
+<div class="col-md-6">
+  <div class="card">
+    <div class="text-center">
+      <h1>Sign Up</h1>
+      <h6>Register Yourself</h6>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input formControlName="firstname" type="text" class="form-control" aria-describedby="emailHelp">
+        <p class="text-danger" *ngIf="registerForm.get('firstname')?.touched
+        && registerForm.get('firstname')?.errors
+        && registerForm.get('firstname')?.errors?.['required']">Please enter your first name!</p>
+        <p class="text-danger" *ngIf="registerForm.get('firstname')?.errors
+        && registerForm.get('firstname')?.errors?.['maxlength']">Your first name should not be longer than 100 characters!</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input formControlName="lastname" type="text" class="form-control" aria-describedby="emailHelp">
+        <p class="text-danger" *ngIf="registerForm.get('lastname')?.touched
+        && registerForm.get('lastname')?.errors
+        && registerForm.get('lastname')?.errors?.['required']">Please enter your last name!</p>
+        <p class="text-danger" *ngIf="registerForm.get('lastname')?.errors
+        && registerForm.get('lastname')?.errors?.['maxlength']">Your last name should not be longer than 100 characters!</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input formControlName="email" type="email" class="form-control" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <p class="text-danger" *ngIf="registerForm.get('email')?.touched
+        && registerForm.get('email')?.errors
+        && registerForm.get('email')?.errors?.['required']">Please enter your email adress!</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input formControlName="password" type="password" class="form-control" aria-describedby="emailHelp">
+        <p class="text-danger" *ngIf="registerForm.get('password')?.touched
+        && registerForm.get('password')?.errors
+        && registerForm.get('password')?.errors?.['required']">Please enter your password!</p>
+        <p class="text-danger" *ngIf="registerForm.get('password')?.touched
+        && registerForm.get('password')?.errors
+        && registerForm.get('password')?.errors?.['minlength']">Your password should be longer than 5 characters!!</p>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Sign up</button>
+
+    </form>
+    <a style="color:#fff; margin-top:10px" routerLink="/auth/login/">Already registered? Click to Login!</a>
+  </div>
+</div>

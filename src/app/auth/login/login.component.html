@@ -4,19 +4,26 @@
         <h1>Login</h1>
         <h6>Please enter your email & password</h6>
       </div>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="mb-3">
         <label class="form-label">Email Address</label>
-        <input type="email" class="form-control" aria-describedby="emailHelp">
+        <input formControlName="email" type="email" class="form-control" aria-describedby="emailHelp">
         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <p class="text-danger" *ngIf="loginForm.get('email')?.touched
+        && loginForm.get('email')?.errors
+        && loginForm.get('email')?.errors?.['required']">Please enter your email adress!</p>
       </div>
       <div class="mb-3">
         <label class="form-label">Password</label>
-        <input type="password" class="form-control" aria-describedby="emailHelp">
+        <input formControlName="password" type="password" class="form-control" aria-describedby="emailHelp">
+        <p class="text-danger" *ngIf="loginForm.get('password')?.touched
+        && loginForm.get('password')?.errors
+        && loginForm.get('password')?.errors?.['required']">Please enter your password!</p>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
 
     </form>
     <a style="color:#fff; margin-top:10px" routerLink="/auth/register/">New user? Click here to sign up!</a>
+    <a style="color:#fff; margin-top:10px" routerLink="/auth/reset-password/">Forgot Password? Click here to reset your password!</a>
   </div>
 </div>
