@@ -14,7 +14,7 @@ import {
   NbDatepickerModule,
   NbDialogModule,
   NbLayoutModule,
-  NbOptionModule, NbSearchModule, NbListModule, NbSelectModule
+  NbOptionModule, NbSearchModule, NbListModule, NbSelectModule, NbSidebarModule
 } from '@nebular/theme';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -42,6 +42,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     NbDatepickerModule,
     NbDialogModule,
     NbLayoutModule,
+    NbSidebarModule.forRoot(),
     NbOptionModule,
     NbSearchModule,
     NbListModule,
