@@ -1,25 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbRoleProvider, NbAccessChecker, NbAclService, NbSecurityModule } from '@nebular/security';
-import { NbActionsModule, NbUserModule, NbIconModule, NbThemeModule, NbContextMenuModule,NbCardModule,
-  NbMenuModule, NbSidebarModule, NbLayoutModule, } from '@nebular/theme';
+import { NbActionsModule, NbUserModule, NbIconModule, NbThemeModule, NbContextMenuModule,NbCardModule, NbMenuModule, NbSidebarModule, NbLayoutModule, NbToastrModule, } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import {  NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 import { ThemeModule } from './@theme/theme.module';
-import { AuthGuard } from './auth-guard.service';
+import {CommonModule} from "@angular/common";
 import { AppRoutingModule } from './app-routing.module';
-import { RoleProvider } from './auth/provider/role.provider';
-import { AccessChecker } from './auth/services/access-checker.service';
 import { AppComponent } from './app.component';
 import { AppPagesModule } from './pages/pages.module';
-
-const formSetting: any = {
-  redirectDelay: 0,
-  showMessages: {
-    success: true,
-  },
-};
+import { AppAuthModule} from "./auth/auth.module";
+import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule} from "ngx-toastr";
+import { ToasterService} from "./service/toastr.service";
 
 
 @NgModule({
@@ -27,62 +19,31 @@ const formSetting: any = {
     AppComponent
   ],
   imports: [
+    CommonModule,
     NbActionsModule,
     NbUserModule,
     NbEvaIconsModule,
     NbIconModule,
     NbCardModule,
+    NbLayoutModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbThemeModule.forRoot({ name: 'default' }),
     ThemeModule.forRoot(),
-    NbLayoutModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppPagesModule,
+    AppAuthModule,
+    HttpClientModule,
+
+    // dois etres le dernier sur la
     AppRoutingModule,
-    NbAuthModule.forRoot({
-      strategies: [
-        NbPasswordAuthStrategy.setup({
-          name: 'email',
-          token: {
-            class: NbAuthJWTToken,
-            key: 'content',
-          },
-          baseEndpoint: '/auth/',
-          login: {
-            endpoint: '/security/token/',
-            method: 'post',
-            defaultErrors: ['Benutzername oder Passwort inkorrekt.'],
-            defaultMessages: ['Erfolgreich angemeldet.'],
-            redirect: {
-              success: '/auth/login',
-              failure: null,
-            },
-          },
-          logout: {
-            endpoint: '',
-            redirect: {
-              success: '/auth/login',
-              failure: null,
-            },
-            defaultErrors: ['Abmeldung nicht erfolgreich.'],
-            defaultMessages: ['Erfolgreich abgemeldet.'],
-          }
-        }),
-      ],
-      forms: {
-        login: formSetting,
-        logout: formSetting,
-      },
-    }),
   ],
-  providers: [
-    { provide: NbRoleProvider, useClass: RoleProvider },
-    { provide: NbAccessChecker, useClass: AccessChecker },
-    { provide: NbAclService}
+  providers: [ToasterService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -14,19 +14,24 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px 1fr 40px;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   overflow: hidden;
+  color: nb-theme(text-hint-color);
 
 }
 
 header {
-  background-color: aqua;
+  background: linear-gradient(90deg, aqua 10%, orange 60%, chartreuse 100%);
   display: grid;
   grid-gap: 8px;
   grid-template-columns: 500px 1fr;
   grid-template-rows:  1fr;
   font-size: 1.25rem;
   border-bottom: 0.5px ridge black;
+  h2{
+    font-size: 1.5rem;
+  }
   .logo-container {
     grid-column-start: 1/2;
     justify-self: left; /* horizontal */
@@ -34,47 +39,60 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-
   }
 
   .logo {
     padding: 0 0.25rem;
-    font-size: 1.75rem;
-    margin-right: 20px;
+    margin-left: 20px;
     white-space: nowrap;
     text-decoration: none;
   }
-
+  .logo h2{
+    font-size: 2rem;
+  }
   .dienste{
     grid-column-end: 2/-2;
     justify-self: right; /* horizontal */
     align-self: center; /* vertical */
-    width: 500px;
+    width: 600px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
   }
-  .dienste a{
+  a{
     text-align: center;
+    text-decoration: none;
+    color: nb-theme(text-hint-color);
   }
+  .suchen{
+    width: 400px;
 
+  }
+  .img{
+    height:45px;
+    object-fit: cover;
+    border: none;
+  }
 }
 
 main {
+  font-size: 80px;
+  font-weight: bolder;
   text-align: center;
-  vertical-align: middle;
-  font-size: 50px;
+  margin-top: 50px;
 }
 
 footer {
   border-top: 0.5px ridge black;
-  background-color: rgb(150, 280, 0);
+  background: linear-gradient(90deg, aqua 10%, chartreuse 60%, green 100%);
   font-size: 1.15rem;
   display: flex;
   justify-content: center;
   align-items: center;
   .logo{
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    font-weight: bold;
     padding: 0 0.55rem;
   }
   a{
@@ -83,4 +101,70 @@ footer {
     margin-left: 10px;
     margin-right: 10px;
   }
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Hambuger menu*/
+#overlay {
+  /*position fixed car le overlay cad le menu doit etre sur une parti fixe de lecran*/
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /*rgba(red, green, blue, alpha)*/
+  background-color: rgba(0, 0, 0, 0);
+
+  /* we work with visibility: hidden,
+  because display: none cannot be animated / transitioned.*/
+  visibility: hidden;
+  /*transition est coe une annimation et il est possible de mettre le temps de reaction a un evenement*/
+  transition: all 2s;
+}
+
+#overlay.on {
+  /*Lorsque la class on est active(voir le script.js) un menu apparait(visibility: visible) et on change/noircir larriere planbackground-color: rgba(0, 0, 0, 0.7)*/
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#menu {
+  background-color: white;
+  height: 100%;
+  width: 50%;
+  /*important de preciser le min et max de width pour que celui cici soit operationel sur tt type de Bowser*/
+  min-width: 150px;
+  max-width: 300px;
+
+  position: absolute;
+  right: 0;
+
+  transition: all 2s;
+
+  /*translateX() repositionne un élément horizontalement sur le plan 2D*/
+  transform: translateX(100%);
+}
+
+.btnX {
+  position: absolute;
+  left: 90%;
+  font-size: 20px;
+  background-color: white;
+  border: 0px;
+}
+#menu a {
+  display: block;
+  text-decoration: dotted red;
+  font-size: 30px;
+  font-weight: bold;
+  color: blue;
+  /*car on a utiliser display block*/
+  padding: 10px 20px;
+}
+
+#menu .log {
+  top: 50px;
+  font-size: 20px;
+}
+#overlay.on #menu {
+  /*translateX() repositionne un élément horizontalement sur le plan 2D*/
+  transform: translateX(0);
 }

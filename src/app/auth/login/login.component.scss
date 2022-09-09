@@ -1,0 +1,51 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+.card{
+  border: none;
+  width:500px;
+  padding: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: hsla(205, 46%, 30%, 1);
+  background: linear-gradient(90deg, hsla(205, 46%, 30%, 1) 0%, hsla(260, 29%, 36%, 1) 100%);
+}
+.card h1,
+h6{
+  color: #fff;
+}
+label{
+  color: #fff;
+}
+footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  border-top: 0.5px ridge black;
+  background: linear-gradient(90deg, aqua 10%, chartreuse 60%, green 100%);
+  font-size: 1.15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 0.55rem;
+  }
+  a{
+    color: blue;
+    text-decoration: underline;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

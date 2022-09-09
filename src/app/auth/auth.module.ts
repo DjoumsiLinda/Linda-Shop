@@ -1,20 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
 import {
   NbAlertModule,
   NbButtonModule,
   NbCheckboxModule,
-  NbInputModule
+  NbInputModule,
+  NbCardModule,
+  NbSpinnerModule,
+  NbAccordionModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbLayoutModule,
+  NbOptionModule, NbSearchModule, NbListModule, NbSelectModule, NbSidebarModule
 } from '@nebular/theme';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {LogoutComponent} from "./logout/logout.component";
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    ResetPasswordComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +37,19 @@ import { LoginComponent } from './login/login.component';
     NbInputModule,
     NbButtonModule,
     NbCheckboxModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    NbCardModule,
+    NbSpinnerModule,
+    NbAccordionModule,
+    NbDatepickerModule,
+    NbDialogModule,
+    NbLayoutModule,
+    NbSidebarModule.forRoot(),
+    NbOptionModule,
+    NbSearchModule,
+    NbListModule,
+    NbSelectModule,
+    ReactiveFormsModule,
   ],
 })
 export class AppAuthModule {}
