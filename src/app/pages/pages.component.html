@@ -1,32 +1,45 @@
 <body>
 <header>
   <div class="logo-container">
-    <a class="logo" href="#">
+    <img class="menu"src="../assets/menu.PNG" />
+    <a class="logo" href="/">
       <h2>Linda~Shop</h2>
-    </a>
-    <a class="menu" href="#">
-      <h2>Menu</h2>
     </a>
   </div>
   <div class="dienste">
-    <a class="sprache" href="sprache">
-      <h2>Sprache</h2>
+    <a class="suchen" >
+      <input class="form-control" type="text" name="search" autocomplete="on" placeholder=" Suchen  ">
     </a>
-    <a class="anmelden" href="auth/login">
-      <h2>Anmelden</h2>
+    <a class="ware" href="pages/warenkorb">
+      <img class="img" src="../assets/warenkorb.PNG" />
     </a>
-    <a class="ware" href="pages/warekorp">
-      <h2>Warekorp</h2>
+    <a href="auth/login" *ngIf="!istAngemelden">
+      <img class="img" src="../assets/login.PNG" />
     </a>
-    <a class="suchen" href="pages/suchen">
-      <h2>Suchen</h2>
+    <a  *ngIf="istAngemelden">
+      <img class="img" src="../assets/user.PNG" />
     </a>
+    <div class="userInfo"  *ngIf="istAngemelden">
+      <p>{{userLastname}}</p>
+      <p>{{userFirstname}}</p>
+    </div>
   </div>
 </header>
 <main>
   <app-product-list></app-product-list>
   <router-outlet></router-outlet>
 </main>
+<div id="overlay">
+  <nav id="menu">
+    <button class="btnX">X</button>
+    <a href="">Über uns</a>
+    <a href="">Settings</a>
+    <a href="">Suchen</a>
+    <a href="">Warenkorb</a>
+    <a href="auth/login" *ngIf="!istAngemelden">Anmelden</a>
+    <a href="auth/logout" *ngIf="istAngemelden">Abmelden</a>
+  </nav>
+</div>
 <footer>
   <div> &copy;2022 </div>
   <div class="logo"> Linda~Shop </div>

@@ -28,3 +28,20 @@ h6{
 label{
   color: #fff;
 }
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  border-top: 0.5px ridge black;
+  background: linear-gradient(90deg, aqua 10%, chartreuse 60%, green 100%);
+  font-size: 1.15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 0.55rem;
+  }
+}
