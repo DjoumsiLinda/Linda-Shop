@@ -3,14 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductComponent } from './product/product.component';
+import { ProductsComponent } from './products/products.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WarenkorbComponent } from './warenkorb/warenkorb.component';
 
 const routes: Routes = [
   {
-    path: 'pages', component: PagesComponent,
+    path: 'products', component: PagesComponent,
     children: [
-        {
-           path: 'navigation', component: NavigationComponent,
-        },
+      {
+        path: '', component: ProductsComponent,
+      },
+      {
+        path: 'navigation', component: NavigationComponent,
+      },
+      {
+        path: 'warenkorb', component: WarenkorbComponent,
+      },
+      {
+        path: ':id', component: ProductDetailComponent,  pathMatch: 'full',
+      },
     ],
   },
 ];
@@ -19,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule { /*https://www.techiediaries.com/routing-angular-router/ */ }

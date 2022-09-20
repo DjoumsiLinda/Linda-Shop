@@ -178,3 +178,15 @@ footer {
   /*translateX() repositionne un élément horizontalement sur le plan 2D*/
   transform: translateX(0%);
 }
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Search*/
+#results {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  position: fixed;
+  top: 50px;
+  width: 400px;
+  z-index: 100;
+  text-align: left;
+}

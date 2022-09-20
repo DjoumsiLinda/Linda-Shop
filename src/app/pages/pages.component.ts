@@ -12,6 +12,18 @@ export class PagesComponent implements OnInit{
   istAngemelden: boolean=false;
   userFirstname: string = " ";
   userLastname: string = " ";
+
+  searchText: any;
+    names = [
+        { country: 'Adil'},
+        { country: 'John'},
+        { country: 'Jinku'},
+        { country: 'Steve'},
+        { country: 'Sam'},
+        { country: 'Zeed'},
+        { country: 'Abraham'},
+        { country: 'Heldon'}
+    ];
   constructor(
     private userService: UserService,
     private router: Router,
