@@ -7,10 +7,11 @@
     </a>
   </div>
   <div class="dienste">
-    <a class="suchen" >
-      <input class="form-control" type="text" name="search" autocomplete="on" placeholder=" Suchen  ">
+    <a class="suchen" id="container">
+      <input  class="form-control" type="text" id="search" name="search" placeholder=" Suchen" [(ngModel)]="searchText" autocomplete="on">
+      <div id="results"></div>
     </a>
-    <a class="ware" href="pages/warenkorb">
+    <a class="ware" href="products/warenkorb">
       <img class="img" src="../assets/warenkorb.PNG" />
     </a>
     <a href="auth/login" *ngIf="!istAngemelden">
@@ -26,20 +27,8 @@
   </div>
 </header>
 <main>
-  <app-product-list></app-product-list>
   <router-outlet></router-outlet>
 </main>
-<div id="overlay">
-  <nav id="menu">
-    <button class="btnX">X</button>
-    <a href="">Über uns</a>
-    <a href="">Settings</a>
-    <a href="">Suchen</a>
-    <a href="">Warenkorb</a>
-    <a href="auth/login" *ngIf="!istAngemelden">Anmelden</a>
-    <a href="auth/logout" *ngIf="istAngemelden">Abmelden</a>
-  </nav>
-</div>
 <footer>
   <div> &copy;2022 </div>
   <div class="logo"> Linda~Shop </div>
@@ -47,4 +36,14 @@
   <a href="https://www.linkedin.com/in/linda-motieh-djoumsi-76597b219/"> ldjoumsi@yahoo.com</a> |
   <a href="https://github.com/DjoumsiLinda"> GitHub</a>
 </footer>
+<div id="overlay">
+  <nav id="menu">
+    <button class="btnX">X</button>
+    <a href="">Über uns</a>
+    <a href="">Settings</a>
+    <a href="products/warenkorb">Warenkorb</a>
+    <a href="auth/login" *ngIf="!istAngemelden">Anmelden</a>
+    <a href="auth/logout" *ngIf="istAngemelden">Abmelden</a>
+  </nav>
+</div>
 </body>

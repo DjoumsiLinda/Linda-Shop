@@ -1,0 +1,13 @@
+<div class="products" >
+    <div *ngFor="let product of aktproducts; let i = index" >
+        <nb-card>
+            <nb-card-header>{{product.description}}</nb-card-header>
+            <nb-card-body><img src="{{product.link}}"></nb-card-body>
+            <nb-card-footer><a href="products/{{product.id}}">more</a></nb-card-footer>
+        </nb-card>
+    </div>
+</div>
+<div class="buttons">
+    <button class="btn" id="myButtonPrev" (click)="prev()" disabled="disabled">Previous</button>
+    <button class="btn" id="myButtonNext"  (click)="next()">Next</button>
+</div>

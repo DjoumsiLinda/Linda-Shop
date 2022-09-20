@@ -1,0 +1,41 @@
+<div class="detail">
+    <div class="link">
+        <div> <a href="/">Home</a>&nbsp;/&nbsp;<a href="/">Products</a>&nbsp;/&nbsp;{{product.name}}</div>
+        <div class="content">
+            <div class="image">
+                <lib-ngx-image-zoom
+                    [thumbImage]=product.link
+                    [fullImage]=product.link
+                    [enableScrollZoom]=true
+                    [enableLens]="true"
+                    [lensWidth]="150"
+                    [lensHeight]="150"
+                    [circularLens]="true"
+                ></lib-ngx-image-zoom>
+            </div>
+            <div class="info">
+                <h1>{{ product.description }}</h1>
+                <p class="price">{{ product.price }} Euro</p>
+                <div class="cart">
+                    <input type="number" step="1" min="1" max="100" name="quantity" value="1" title="menge" size="4" placeholder="" inputmode="numeric" autocomplete="off">
+                    <button class="button">Add to ...</button>
+                </div>
+                <div class="categorie">
+                    <p class="font">Catégorie:</p><p>{{ product.productTyp }}</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="description">
+            <h2>Description</h2>
+            <p>{{ product.info }}</p>		
+        </div>    
+    </div>
+    <div class="recht">
+        <div *ngFor="let produkt of products; let i = index" >
+            <nb-card-body *ngIf="produkt.name!=product.name && product.link!=' '">
+                <a href="products/{{produkt.id}}"><img src="{{produkt.link}}"></a>
+            </nb-card-body>
+        </div>
+    </div>
+</div>

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit{
         if (user.password.localeCompare(localPassword) ==0) {
           this.toastrService.showMessage(" Wilkommen "+ user.lastname+" !", "SUCCESS");
           localStorage.setItem(user.email, user.password);
-          this.router.navigate(["/pages"])
+          this.router.navigate(["/products"])
         }
 
       },
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit{
           if (match) {
             this.toastrService.showMessage(" Wilkommen "+ user.lastname+" !", "SUCCESS");
             localStorage.setItem(user.email, user.password);
-            this.router.navigate(["/pages"])
+            this.router.navigate(["/products"])
           } else {
             this.toastrService.showMessage( email + " existiert nicht.", "WARN");
             this.router.navigate(["/auth/login"])

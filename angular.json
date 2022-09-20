@@ -94,7 +94,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets/js/script.js"
+              "src/assets/js/menu.js"
             ],
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
