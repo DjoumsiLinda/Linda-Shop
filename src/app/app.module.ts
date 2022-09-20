@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbActionsModule, NbUserModule, NbIconModule, NbThemeModule, NbContextMenuModule,NbCardModule, NbMenuModule, NbSidebarModule, NbLayoutModule, NbToastrModule, } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ThemeModule } from './@theme/theme.module';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 import {CommonModule} from "@angular/common";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { ToasterService} from "./service/toastr.service";
     ThemeModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
+    NgxImageZoomModule,
     ToastrModule.forRoot(),
     AppPagesModule,
     AppAuthModule,
