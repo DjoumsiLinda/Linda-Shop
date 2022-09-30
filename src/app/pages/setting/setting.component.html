@@ -1,0 +1,48 @@
+<section class="profile">
+    <div id="info">
+        <div>
+            <img class="profile" src="/assets/profile.PNG" />
+        </div>
+        <div>
+            <h2>
+                {{user.firstname}}  {{user.lastname}}
+                <img class="edit" (click)="onEditHandle()" src="/assets/edit.PNG"/>
+           </h2>
+           <p>
+            {{user.email}}
+               <img class="edit" (click)="onEditHandle()" src="/assets/edit.PNG"/>
+           </p>
+           <p>IBAN: {{user.iban}}<img class="edit" (click)="onEditHandle()" src="/assets/edit.PNG"/></p>
+           <p *ngIf="user.userAdresse.strasse">Address: {{user.userAdresse.strasse}} | {{user.userAdresse.plz}}, {{user.userAdresse.ort}}<img class="edit" (click)="onEditHandle()" src="/assets/edit.PNG"/></p>
+           <p *ngIf="user.lieferAdresse.strasse">Delivery address: {{user.lieferAdresse.strasse}} | {{user.lieferAdresse.plz}}, {{user.lieferAdresse.ort}}<img class="edit" (click)="onEditHandle()" src="/assets/edit.PNG"/></p>
+        </div>
+       
+    </div>
+    <div id="updateProfile" *ngIf="editProfile">
+        <h1>Edit your profile</h1>
+        <form [formGroup]="settingForm" (ngSubmit)="setting()">
+            <input formControlName="firstname"  type="text" name="firstname" class="form-control"/>
+            <input formControlName="lastname" type="text"name="lastname" class="form-control"/>
+            <input formControlName="email"  type="email"name="email"  class="form-control"/> 
+            <!-- <input formControlName="password" type="password" name="password" placeholder="Enter a new password" class="form-control"/>-->
+            <input formControlName="iban" type="text"name="iban" placeholder="IBAN" class="form-control"/> 
+            <div class="adresses">
+                <div class="adresse">
+                    <label>Address: </label>
+                    <input formControlName="adressePlz"  type="text"name="plz"  placeholder="Postal code" class="form-control"/>
+                    <input formControlName="adresseStrasse" type="text"name="strasse"  placeholder="Street" class="form-control"/>
+                    <input formControlName="adresseOrt" type="text"name="ort" placeholder="Place" class="form-control"/>
+                </div>
+                <div class="lieferadresse">
+                    <label>Delivery address: </label>
+                    <input formControlName="lieferadressePlz" type="text"name="plz" placeholder="Postal code" class="form-control"/>
+                    <input formControlName="lieferadresseStrasse" type="text"name="strasse"  placeholder="Street" class="form-control"/>
+                    <input formControlName="lieferadresseOrt" type="text"name="ort" placeholder="Place" class="form-control"/>
+                </div>
+            </div>
+            <button type="submit" name="update" class="btn btn-primary" >
+                Update
+            </button>
+        </form>
+    </div>
+</section>

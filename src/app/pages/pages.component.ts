@@ -1,7 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import {UserService} from "../service/user.service";
-import {Router} from "@angular/router";
+import { SharedService } from '../service/shared.service';
+import { OrderService } from '../service/order.service';
+import { Order } from '../model/order';
+import { Router } from '@angular/router';
+import { LocalDataService } from '../service/localData.service';
 
 @Component({
   selector: 'app-pages',
@@ -9,44 +12,69 @@ import {Router} from "@angular/router";
   templateUrl: './pages.component.html',
 })
 export class PagesComponent implements OnInit{
+  favoriteList: number[]=[0];
   istAngemelden: boolean=false;
-  userFirstname: string = " ";
-  userLastname: string = " ";
-
+  userFirstname: string = "";
+  userLastname: string = "";
+  warenkorbCounter: number = 0;
+  favoritCounter: number = 0;
   searchText: any;
-    names = [
-        { country: 'Adil'},
-        { country: 'John'},
-        { country: 'Jinku'},
-        { country: 'Steve'},
-        { country: 'Sam'},
-        { country: 'Zeed'},
-        { country: 'Abraham'},
-        { country: 'Heldon'}
-    ];
+
+
   constructor(
-    private userService: UserService,
+    private orderService: OrderService,
+    private sharedService: SharedService,
     private router: Router,
+    private localAuth: LocalDataService
   ) {}
 
   ngOnInit(): void {
-    let localEmail = localStorage.key(0)|| "";
-    let localPassword = localStorage.getItem(localEmail)||"";
-    if(localEmail==null || localPassword==null || localEmail== "" || localPassword==""){
+    this.sharedService.user.subscribe((user) => {
+      if(user.firstname==''){
+        return;
+      }
+      this.istAngemelden=true;
+      this.userLastname=user.lastname;
+      this.userFirstname=user.firstname;
+      this.orderService.getAllOrderByuserEmail(user.email).subscribe(
+        (orders)=>{
+          this.warenkorbCounter=this.getQuantity(orders);
+      }
+      )
+    });
+    this.favoriteList=this.localAuth.localFavorite();
+    this.sharedService.favoriteCounter.subscribe((n)=>{
+      if(n!=0)this.favoritCounter=n;
+      else this.favoritCounter=this.favoriteList.length;
+    })
+    
+  }
+
+  addWarenkorb(componentReference: any){
+    if(!componentReference.warenkorbUpdate){
       return;
     }
-
-    this.userService.login(localEmail).subscribe(
-      (user) =>{
-        if (user.password.localeCompare(localPassword) ==0) {
-          this.istAngemelden=true;
-          this.userLastname=user.lastname;
-          this.userFirstname=user.firstname;
-        }
-      },
-      (error)=>{
-        //this.router.navigate(["/auth/login"])
-      }
-    );
+    componentReference.warenkorbUpdate.subscribe((data: any) => {
+      this.warenkorbCounter=data;
+    })
   }
+
+  getQuantity(order: Order[]): number{
+    var erg: number=0.0;
+    order.forEach(or=>{
+      erg=erg+or.quantity;
+    })
+    return erg;
+  }
+
+  OnCategories(category: string){
+    this.sharedService.category.next(category);
+    this.router.navigate(["/products"])
+  }
+
+  /*
+  https://fontawesomeicons.com/svg/icons/menu_hamburger
+  https://freefrontend.com/css-menu/
+
+  */
 }

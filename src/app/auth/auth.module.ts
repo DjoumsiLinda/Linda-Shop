@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {LogoutComponent} from "./logout/logout.component";
+import { AuthService } from '../service/auth.service';
+import { AuthGuard } from '../auth-guard.service';
 
 
 @NgModule({
@@ -50,6 +52,10 @@ import {LogoutComponent} from "./logout/logout.component";
     NbListModule,
     NbSelectModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    AuthService,
+    AuthGuard,
   ],
 })
 export class AppAuthModule {}
