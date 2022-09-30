@@ -15,7 +15,7 @@ window.onload=function() {
 
   var tab = document.querySelector(".tab");
   tab?.addEventListener("click", openInfo(tab, 'description'));
- 
+  document.querySelector("#defaultOpen")?.click();
 }
 
 function handlerCaterory(caterory, cateroryList){
@@ -41,6 +41,9 @@ function handlerBtnx(overlay, btnx) {
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ tabs
 function openInfo(evt, info) {
+  if(!evt || evt.currentTarget==undefined){
+    return;
+  }
   // Declare all variables
   var i, tabcontent, tablinks;
 

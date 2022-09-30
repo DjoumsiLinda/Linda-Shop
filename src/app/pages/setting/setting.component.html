@@ -20,27 +20,47 @@
     </div>
     <div id="updateProfile" *ngIf="editProfile">
         <h1>Edit your profile</h1>
-        <form [formGroup]="settingForm" (ngSubmit)="setting()">
-            <input formControlName="firstname"  type="text" name="firstname" class="form-control"/>
-            <input formControlName="lastname" type="text"name="lastname" class="form-control"/>
-            <input formControlName="email"  type="email"name="email"  class="form-control"/> 
+        <form class="form"  [formGroup]="settingForm" (ngSubmit)="setting()">
+            <input formControlName="firstname" maxlength="50" minlength="3" type="text" name="firstname" class="form-control"/>
+            <span class="text-danger" 
+                *ngIf="(settingForm.get('firstname')?.touched) && settingForm.get('firstname')?.errors?.['required']">
+                First Name is required
+            </span>
+            <span class="text-danger" 
+                *ngIf="settingForm.get('firstname')?.errors && settingForm.get('firstname')?.errors?.['maxlength']">
+                Your First name should not be longer than 50 characters!
+            </span>
+            <input formControlName="lastname" maxlength="50" minlength="3" type="text"name="lastname" class="form-control"/>
+            <span class="text-danger" 
+                *ngIf="(settingForm.get('firstname')?.touched) && settingForm.get('firstname')?.errors?.['required']">
+                Last Name is required
+            </span>
+            <span class="text-danger" 
+                *ngIf="settingForm.get('firstname')?.errors && settingForm.get('firstname')?.errors?.['maxlength']">
+                Your Last name should not be longer than 50 characters!
+            </span>
+            <input formControlName="email" maxlength="50" minlength="5" type="email" pattern=".+@globex\.com" name="email"  class="form-control"/> 
+            <span class="text-danger" 
+                *ngIf="settingForm.get('firstname')?.errors && settingForm.get('email')?.errors?.['required']">
+                Please enter your email adress!
+            </span>
             <!-- <input formControlName="password" type="password" name="password" placeholder="Enter a new password" class="form-control"/>-->
-            <input formControlName="iban" type="text"name="iban" placeholder="IBAN" class="form-control"/> 
+            <input formControlName="iban" maxlength="15" minlength="5" type="text" name="iban" placeholder="IBAN" class="form-control"/> 
             <div class="adresses">
                 <div class="adresse">
                     <label>Address: </label>
-                    <input formControlName="adressePlz"  type="text"name="plz"  placeholder="Postal code" class="form-control"/>
+                    <input formControlName="adressePlz" maxlength="7" minlength="2" type="text"name="plz"  placeholder="Postal code" class="form-control"/>
                     <input formControlName="adresseStrasse" type="text"name="strasse"  placeholder="Street" class="form-control"/>
                     <input formControlName="adresseOrt" type="text"name="ort" placeholder="Place" class="form-control"/>
                 </div>
                 <div class="lieferadresse">
                     <label>Delivery address: </label>
-                    <input formControlName="lieferadressePlz" type="text"name="plz" placeholder="Postal code" class="form-control"/>
+                    <input formControlName="lieferadressePlz" maxlength="7" minlength="2" type="text" name="plz" placeholder="Postal code" class="form-control"/>
                     <input formControlName="lieferadresseStrasse" type="text"name="strasse"  placeholder="Street" class="form-control"/>
                     <input formControlName="lieferadresseOrt" type="text"name="ort" placeholder="Place" class="form-control"/>
                 </div>
             </div>
-            <button type="submit" name="update" class="btn btn-primary" >
+            <button type="submit" class="btn btn-primary" [disabled]="settingForm.get('firstname')?.errors || settingForm.get('lastname')?.errors">
                 Update
             </button>
         </form>

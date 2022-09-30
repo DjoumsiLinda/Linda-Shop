@@ -27,7 +27,7 @@ export class AuthService {
         if (user.password.localeCompare(localPassword)==0) {
           this.sharedService.user.next(user);
           this.sharedService.senduser.next(user);
-          console.log("AuthService: match ", user)
+          //console.log("AuthService: match ", user)
           return true;
         }
           return false;

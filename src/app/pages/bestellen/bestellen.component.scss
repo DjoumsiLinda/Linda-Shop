@@ -16,7 +16,10 @@ th, td {
 
 .total button{
     padding: 10px 80px;
-    background-color: orangered
+    background-color: gray;
+}
+button:hover{
+    background: linear-gradient(90deg, hsla(205, 46%, 30%, 1) 0%, hsla(260, 29%, 36%, 1) 100%);
 }
 .recht{
     margin-right: 100px;

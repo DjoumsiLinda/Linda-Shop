@@ -24,7 +24,7 @@
 }
 #updateProfile{
     font-size: 25px;
-    margin-top: -70px;
+    margin-top: -50px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -41,7 +41,7 @@
     font-size: 16px;
     color: white;
     padding: 10px 40px;
-    background-color: orangered; 
+    background-color: gray;
     margin-top: 20px;
 }
 
@@ -55,4 +55,7 @@
 }
 .adresse{
     margin-right: 20px;
+}
+span{
+    font-size: 20px;
 }
