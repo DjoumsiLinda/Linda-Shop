@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["bcryptjs", "eva-icons"],
             "outputPath": "dist/shop",
             "index": "src/index.html",
             "main": "src/main.ts",
