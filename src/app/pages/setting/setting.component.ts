@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { max } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
 import { User } from 'src/app/model/user';
 import { ToasterService } from 'src/app/service/toastr.service';
@@ -45,10 +46,11 @@ export class SettingComponent implements OnInit {
         }
       );
     }
-
+    console.log("*********", this.settingForm.valid)
   }
 
   setting(){
+    console.log("*********", this.settingForm.valid)
     if(!this.settingForm) {
       return;
     }
@@ -59,8 +61,16 @@ export class SettingComponent implements OnInit {
     updateUser.firstname=this.settingForm.value.firstname;
     updateUser.lastname=this.settingForm.value.lastname;
     updateUser.email=this.settingForm.value.email;
+    if(!updateUser.email.includes("@")){
+      this.toastrService.showMessage("Email Adress not correct.", "WARN");
+      return;
+    }
     //updateUser.password=this.user.password;
     updateUser.iban=this.settingForm.value?.iban;
+    if(!updateUser.iban.includes("DE")){
+      this.toastrService.showMessage("IBAN not correct.", "WARN");
+      return;
+    }
     adresse1.id=this.user.userAdresse.id;
     adresse2.id=this.user.lieferAdresse.id;
     adresse1.plz=this.settingForm.value?.adressePlz;
@@ -87,13 +97,13 @@ export class SettingComponent implements OnInit {
     return this.settingForm = this.formBuilder.group({
       firstname: [this.user.firstname, [Validators.required, Validators.maxLength(50)]],
       lastname: [this.user.lastname, [Validators.required, Validators.maxLength(50)]],
-      email: [this.user.email, Validators.required],
+      email: [this.user.email, [Validators.required, Validators.maxLength(30)]],
       //password: [this.user.password, [Validators.required, Validators.minLength(5)]],
-      iban: [this.user.iban, Validators.required],
-      adressePlz: [this.user.userAdresse?.plz],
+      iban: [this.user.iban, Validators.maxLength(15)],
+      adressePlz: [this.user.userAdresse?.plz, Validators.maxLength(7)],
       adresseStrasse: [this.user.userAdresse?.strasse],
       adresseOrt: [this.user.userAdresse?.ort],
-      lieferadressePlz: [this.user.lieferAdresse?.plz],
+      lieferadressePlz: [this.user.lieferAdresse?.plz, Validators.maxLength(7)],
       lieferadresseStrasse: [this.user.lieferAdresse?.strasse],
       lieferadresseOrt: [this.user.lieferAdresse?.ort]
     });

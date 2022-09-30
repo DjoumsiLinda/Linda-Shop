@@ -1,11 +1,11 @@
 <div class="bestellen">
     <div class="link">
         <h1>{{user.firstname}} {{user.lastname}}</h1>
-        <div class="lieferadresse" *ngIf="lieferadresse.strasse!=''">
+        <div class="lieferadresse" *ngIf="lieferadresse.strasse!='' || lieferadresse.plz!=0 || lieferadresse.ort!=''">
             <h2>Delivery address:</h2>
             <div>{{lieferadresse.strasse}} | {{lieferadresse.plz}}, {{lieferadresse.ort}}</div>
         </div>
-        <div class="lieferadresse" *ngIf="lieferadresse.strasse==''">
+        <div class="lieferadresse" *ngIf="lieferadresse.strasse=='' || lieferadresse.plz==0 || lieferadresse.ort==''">
             <h2>Delivery address:</h2>
             <div>Please set your Profile. <a href="home/setting">Settings</a></div>
         </div>

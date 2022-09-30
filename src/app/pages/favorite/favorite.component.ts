@@ -26,6 +26,7 @@ export class FavoriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.favoriteList=this.localAuth.localFavorite();
+    this.localAuth.isLocalAuthenticated();
     this.getProducts();
   }
 
