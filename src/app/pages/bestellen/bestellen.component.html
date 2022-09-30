@@ -1,0 +1,57 @@
+<div class="bestellen">
+    <div class="link">
+        <h1>{{user.firstname}} {{user.lastname}}</h1>
+        <div class="lieferadresse" *ngIf="lieferadresse.strasse!=''">
+            <h2>Delivery address:</h2>
+            <div>{{lieferadresse.strasse}} | {{lieferadresse.plz}}, {{lieferadresse.ort}}</div>
+        </div>
+        <div class="lieferadresse" *ngIf="lieferadresse.strasse==''">
+            <h2>Delivery address:</h2>
+            <div>Please set your Profile. <a href="home/setting">Settings</a></div>
+        </div>
+        <div class="iban" *ngIf="user.iban!=''">
+            <h2>IBAN:</h2>
+             {{user.iban}}
+        </div>
+        <div class="lieferadresse" *ngIf="user.iban==''">
+            <h2>IBAN:</h2>
+            <div>Please set your Profile. <a href="home/setting">Settings</a></div>
+        </div>
+    </div>
+    <div class="total" *ngIf="total >0 ">
+        <h1>Total: </h1>
+        <table style="width:100%">
+            <tr>
+              <th>Subtotal:</th>
+              <td>{{rundenaufzweistellen(total)}} €</td>
+            </tr>
+            <tr>
+              <th>Shipping costs:</th>
+              <td>{{rundenaufzweistellen(transport)}} €</td>
+            </tr>
+            <tr>
+              <th>Total:</th>
+              <td>{{rundenaufzweistellen(total+transport)}} €</td>
+            </tr>
+        </table>
+        <button *ngIf="user.iban!='' && lieferadresse.strasse!=''" (click)="OnPay()">Pay</button>
+    </div>
+
+    <div class="recht" *ngIf="orders.length > 0 && orders[0].name!=''">
+        <h2>List of Products</h2>
+        <table style="width:100%">
+            <tr>
+                <th>Products</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            <tr *ngFor="let pro of orders; let i = index">
+                <td><a href="products/{{pro.productId}}" class="proName">{{pro.name}}</a></td>
+                <td>{{rundenaufzweistellen(pro.price)}} €</td>
+                <td>{{pro.quantity}}</td>
+                <td>{{rundenaufzweistellen(pro.price * pro.quantity)}} €</td>
+            </tr>
+        </table>
+    </div>    
+</div>

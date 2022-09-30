@@ -13,6 +13,8 @@ import { AppAuthModule} from "./auth/auth.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import { ToasterService} from "./service/toastr.service";
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './service/auth.service';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { ToasterService} from "./service/toastr.service";
     // dois etres le dernier sur la
     AppRoutingModule,
   ],
-  providers: [ToasterService
+  providers: [
+    ToasterService
   ],
   bootstrap: [AppComponent]
 })

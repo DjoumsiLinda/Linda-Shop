@@ -7,25 +7,60 @@ window.onload=function() {
   btnx?.addEventListener("click", handlerBtnx(overlay, btnx));
 
   var search = document.querySelector("#search");
-  search?.addEventListener("input", handleSearch)
+  search?.addEventListener("input", handleSearch);
+
+  var caterory = document.querySelector(".caterory");
+  var cateroryList = document.querySelector(".caterory .list");
+  caterory?.addEventListener("click", handlerCaterory(caterory, cateroryList));
+
+  var tab = document.querySelector(".tab");
+  tab?.addEventListener("click", openInfo(tab, 'description'));
+ 
 }
 
+function handlerCaterory(caterory, cateroryList){
+  caterory?.addEventListener("click", function () {
+    cateroryList.toggleClass('hidden');
+  });
+}
 
 function handlerMenu(overlay, menu) {
-  menu.addEventListener("click", function () {
+  menu?.addEventListener("click", function () {
     overlay.classList.add("on");
   });
 }
 function handlerOverlay(overlay) {
-  overlay.addEventListener("click", function () {
+  overlay?.addEventListener("click", function () {
     overlay.classList.remove("on");
   });
 }
 function handlerBtnx(overlay, btnx) {
-  btnx.addEventListener("click", function () {
+  btnx?.addEventListener("click", function () {
     overlay.classList.remove("on");
   });
 }
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ tabs
+function openInfo(evt, info) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(info).style.display = "block";
+  evt.currentTarget.className += " active";
+} 
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ search
 
 function handleSearch(e) {

@@ -1,0 +1,68 @@
+.warenkorp{
+    padding: 10px 20px;
+}
+.contains {
+   margin-top: 10px;
+   overflow-y: scroll;
+   max-height: 90vh;
+   max-width: 60%;
+   width: 800px;
+   height: 65vh;
+}
+
+.total {
+   position: absolute;
+   transform: translate(50%, 50%);
+   top: -5%;
+   right: 25%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+.contains  input{
+    width: 50px;
+}
+.contains th:nth-child(2),
+.contains td:nth-child(2) {
+    min-width: 200px;
+}
+.proName{
+    text-decoration: none;
+}
+.total button{
+    padding: 10px 80px;
+    background-color: orangered
+}
+img{
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+
+.product-remove{
+    border: none;
+    background-color: white;
+    color:red;
+    font-weight: bold;
+}
+
+.bestellen{
+    padding: 10px 10px;
+    position: absolute;
+   transform: translate(50%, 50%);
+   top: 81%;
+   left: 20%;
+   background-color: orangered
+}
+
+button:hover{
+    background: linear-gradient(90deg, hsla(205, 46%, 30%, 1) 0%, hsla(260, 29%, 36%, 1) 100%);
+}

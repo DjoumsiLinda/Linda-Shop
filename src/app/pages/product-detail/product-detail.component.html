@@ -1,6 +1,6 @@
 <div class="detail">
     <div class="link">
-        <div> <a href="/">Home</a>&nbsp;/&nbsp;<a href="/">Products</a>&nbsp;/&nbsp;{{product.name}}</div>
+        <div> <a href="/">Home</a>&nbsp;/&nbsp;<a href="/products">Products</a>&nbsp;/&nbsp;{{product.name}}</div>
         <div class="content">
             <div class="image">
                 <lib-ngx-image-zoom
@@ -15,26 +15,37 @@
             </div>
             <div class="info">
                 <h1>{{ product.description }}</h1>
-                <p class="price">{{ product.price }} Euro</p>
+                <p class="price">{{ rundenaufzweistellen(product.price) }} Euro</p>
                 <div class="cart">
-                    <input type="number" step="1" min="1" max="100" name="quantity" value="1" title="menge" size="4" placeholder="" inputmode="numeric" autocomplete="off">
-                    <button class="button">Add to ...</button>
+                    <input (click)="addQuantity()" type="number" step="1" min="1" max="100" name="quantity" value="1" title="menge" size="4" placeholder="" inputmode="numeric" autocomplete="off">
+                    <button class="button" (click)="addWarenkorb()">Add to List</button>
+                    <button class="button" (click)="addToFavorite()">Add to favorite</button>
                 </div>
                 <div class="categorie">
-                    <p class="font">Catégorie:</p><p>{{ product.productTyp }}</p>
+                    <p class="font">Category:</p><p>{{ product.productTyp }}</p>
                 </div>
             </div>
             
         </div>
-        <div class="description">
-            <h2>Description</h2>
-            <p>{{ product.info }}</p>		
-        </div>    
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks in active" onclick="openInfo(event, 'description')" id="defaultOpen">Description</button>
+            <button class="tablinks" onclick="openInfo(event, 'moreInfo')">More Info</button>
+        </div>
+        <!-- Tab content -->
+        <div id="description" class="tabcontent" style="display: block;">
+            <p>{{ product.info }}</p>
+        </div><!-- Tab content -->
+        <div id="moreInfo" class="tabcontent">
+            <p>...</p>
+        </div>
+    
     </div>
-    <div class="recht">
+    <div class="recht" *ngIf="products.length > 1">
+        <p style="font-weight: bold; text-decoration: underline;">Suggestion</p>
         <div *ngFor="let produkt of products; let i = index" >
             <nb-card-body *ngIf="produkt.name!=product.name && product.link!=' '">
-                <a href="products/{{produkt.id}}"><img src="{{produkt.link}}"></a>
+                <a href="products/{{produkt.id}}" class="nom"><img src="{{produkt.link}}"><p>{{produkt.name}}</p></a>
             </nb-card-body>
         </div>
     </div>
