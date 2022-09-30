@@ -1,0 +1,58 @@
+.profile{
+    font-size: 20px;
+    margin-top: 65px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#info{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#info .profile{
+    margin-top: 0px;
+    margin-right: 20px;
+    height: 200px;
+}
+#info .edit{
+    cursor: pointer;
+    height: 20px;
+    background-color: black;
+}
+#updateProfile{
+    font-size: 25px;
+    margin-top: -70px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-right: 100px;
+}
+#updateProfile input{
+    margin-top: 10px;
+    font-size: 20px;
+    width: 100%;
+    height: 40px;
+}
+
+#updateProfile button{
+    font-size: 16px;
+    color: white;
+    padding: 10px 40px;
+    background-color: orangered; 
+    margin-top: 20px;
+}
+
+#updateProfile button:hover{
+    background: linear-gradient(90deg, hsla(205, 46%, 30%, 1) 0%, hsla(260, 29%, 36%, 1) 100%);
+}
+.adresses{
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+}
+.adresse{
+    margin-right: 20px;
+}

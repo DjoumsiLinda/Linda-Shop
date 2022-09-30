@@ -1,1 +1,46 @@
-<p>warenkorb works!</p>
+<div class="warenkorp">
+    <div> <a href="/">Home</a>&nbsp;/&nbsp;<a href="/products">Products</a>&nbsp;/&nbsp;Shopping</div>
+    <div class="contains">
+        <table style="width:100%" *ngIf="order.length>0">
+            <tr>
+                <th> </th>
+                <th>Products</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            <tr *ngFor="let pro of order; let i = index">
+                <td> 
+                    <button class="product-remove" (click)="productRemove(i)" title="remove product">X</button>
+                    <img src="{{pro.image}}">
+                </td>
+                <td><a href="products/{{pro.productId}}" class="proName">{{pro.name}}</a></td>
+                <td>{{rundenaufzweistellen(pro.price)}} €</td>
+                <td>
+                    <input type="number" step="1" min="1" max="100" name="quantity" value="{{pro.quantity}}" title="menge" size="4" inputmode="numeric" autocomplete="off" (click)="onHandleNumer($event, i)">
+                </td>
+                <td>{{rundenaufzweistellen(pro.price * pro.quantity)}} €</td>
+            </tr>
+        </table>
+        <h1 *ngIf="order.length==0">Shopping List ist empty</h1>
+    </div>
+    <a href="/products"><button class="bestellen" (click)="onGotoProducts()" >Go to Products</button></a>
+    <div class="total">
+        <h1>Total: </h1>
+        <table style="width:100%">
+            <tr>
+              <th>Subtotal:</th>
+              <td>{{rundenaufzweistellen(getTotal())}} €</td>
+            </tr>
+            <tr>
+              <th>Shipping costs:</th>
+              <td>{{rundenaufzweistellen(transport)}} €</td>
+            </tr>
+            <tr>
+              <th>Total:</th>
+              <td>{{rundenaufzweistellen(getTotal()+transport)}} €</td>
+            </tr>
+        </table>
+        <a href="/products/order" (click)="OnPayHandle()"><button>Pay</button></a>
+    </div>
+</div>

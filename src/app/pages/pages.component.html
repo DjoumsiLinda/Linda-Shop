@@ -1,37 +1,73 @@
 <body>
-<header>
+<header class="header">
   <div class="logo-container">
-    <img class="menu"src="../assets/menu.PNG" />
-    <a class="logo" href="/">
-      <h2>Linda~Shop</h2>
+    <a class="menuHover" >
+      <p  class="logo hoverClass" data-hover="menu"><svg class="menu" height="55" viewBox="0 0 21 21" width="55" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 6.5h12"/><path d="m4.498 10.5h11.997"/><path d="m4.5 14.5h11.995"/></g></svg> </p>
+    </a>
+    <a class="headerHover"  href="products">
+      <h2 class="logo" data-hover="shop">Afro~Shop</h2>
     </a>
   </div>
   <div class="dienste">
+    <div class="dropdown dropdownHover">
+      <button class="dropbtn">Category <i class="fa fa-angle-down"></i></button>
+      <div class="dropdown-content">
+        <a  (click)="OnCategories('Produits Frais')">Produits Frais</a>
+        <a  (click)="OnCategories('Produits Secs')">Produits Secs</a>
+        <a  (click)="OnCategories('Produits Fumées')">Produits Fumées</a>
+        <a  (click)="OnCategories('Produits d\'assaisonnements')">Produits d'assaisonnements</a>
+        <a  (click)="OnCategories('Huiles')">Huiles</a>
+        <a  (click)="OnCategories('Farines')">Farines</a>
+        <a  (click)="OnCategories('Bijoux')">Bijoux</a>
+        <a  (click)="OnCategories('Pagnes')">Pagnes</a>
+        <a  (click)="OnCategories('Meches')">Meches</a>
+      </div>
+    </div> 
     <a class="suchen" id="container">
       <input  class="form-control" type="text" id="search" name="search" placeholder=" Suchen" [(ngModel)]="searchText" autocomplete="on">
       <div id="results"></div>
     </a>
-    <a class="ware" href="products/warenkorb">
-      <img class="img" src="../assets/warenkorb.PNG" />
+    <a class="ware">
+      <a class="favoritHover" href="products/favorite">
+        <p  class="logo hoverClass" data-hover="favorite">
+          <svg width="45" height="45" color="black" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>
+        </p>
+      </a>
+      <p><button>{{favoritCounter}}</button></p>
     </a>
-    <a href="auth/login" *ngIf="!istAngemelden">
-      <img class="img" src="../assets/login.PNG" />
+    <a class="ware">
+      <a class="wareHover" href="products/shopping">
+        <p  class="logo hoverClass" data-hover="shoping cart">
+          <svg  width="45" height="45" color="black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>  
+        </p>
+      </a>
+      <p><button>{{warenkorbCounter}}</button></p>
     </a>
-    <a  *ngIf="istAngemelden">
-      <img class="img" src="../assets/user.PNG" />
+    <a href="auth/login" *ngIf="!istAngemelden" class="login">
+      <p class="logo logClass" data-hover="login">
+        <svg width="50" height="50" color="black" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/> <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/> </svg>  
+      </p>
+    </a>
+    <a href="auth/logout" *ngIf="istAngemelden" class="login">
+      <p class="logo logClass" data-hover="logout" >
+        <svg  width="45" height="45" viewBox="0 0 30 30" stroke="#212b36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"  fill="none"><circle cx="12" cy="8" r="5" /><path d="M3,21 h18 C 21,12 3,12 3,21"/></svg> 
+      </p>
+    </a>
+    <!-- <a *ngIf="istAngemelden">
+      <svg  width="45" height="45" viewBox="0 0 30 30" stroke="#212b36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"  fill="none"><circle cx="12" cy="8" r="5" /><path d="M3,21 h18 C 21,12 3,12 3,21"/></svg> 
     </a>
     <div class="userInfo"  *ngIf="istAngemelden">
       <p>{{userLastname}}</p>
       <p>{{userFirstname}}</p>
-    </div>
+    </div>-->
   </div>
 </header>
 <main>
-  <router-outlet></router-outlet>
+  <router-outlet  (activate)="addWarenkorb($any($event))"></router-outlet>
 </main>
 <footer>
   <div> &copy;2022 </div>
-  <div class="logo"> Linda~Shop </div>
+  <div class="logo"> Afro~Shop </div>
   <div> | </div>
   <a href="https://www.linkedin.com/in/linda-motieh-djoumsi-76597b219/"> ldjoumsi@yahoo.com</a> |
   <a href="https://github.com/DjoumsiLinda"> GitHub</a>
@@ -39,11 +75,26 @@
 <div id="overlay">
   <nav id="menu">
     <button class="btnX">X</button>
-    <a href="">Über uns</a>
-    <a href="">Settings</a>
-    <a href="products/warenkorb">Warenkorb</a>
-    <a href="auth/login" *ngIf="!istAngemelden">Anmelden</a>
-    <a href="auth/logout" *ngIf="istAngemelden">Abmelden</a>
+    <a href="home/shop">
+      <svg width="30" height="30" viewBox="0 0 30 30"> <path d="M3 10v11h6v-7h6v7h6v-11L12,3z"/> </svg> 
+      About us</a>
+    <a href="home/setting"> 
+      <svg  width="30" height="30" viewBox="0 0 30 30" stroke="#212b36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"  fill="none"><circle cx="12" cy="8" r="5" /><path d="M3,21 h18 C 21,12 3,12 3,21"/></svg> 
+      Settings</a>
+    <a href="products/shopping">
+      <svg width="30" height="30" color="black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>  
+      Shopping</a>
+    <a href="auth/login" *ngIf="!istAngemelden"> 
+      <svg width="30" height="30" color="black" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/> <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/> </svg>  
+      Log in</a>
+    <a href="auth/logout" *ngIf="istAngemelden"> 
+      <svg width="30" height="30" color="black" viewBox="0 0 30 30"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M5 22a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3h-2V4H6v16h12v-2h2v3a1 1 0 0 1-1 1H5zm13-6v-3h-7v-2h7V8l5 4-5 4z"/> </g> </svg> 
+      Log out</a>
   </nav>
 </div>
+
 </body>
+
+
+
+

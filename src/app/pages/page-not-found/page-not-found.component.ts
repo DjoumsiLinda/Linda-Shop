@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -8,9 +9,17 @@ import {Router} from "@angular/router";
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor(private router: Router) { this.router.navigate(["not-found"])}
+  constructor(
+    private sharedService: SharedService,
+    private router: Router,
+    ) {}
 
   ngOnInit(): void {
+  }
+
+  OnCategories(category: string){
+    this.sharedService.category.next(category);
+    this.router.navigate(["/products"])
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {User} from "../../model/user";
 import {UserService} from "../../service/user.service";
 import * as bcrypt from 'bcryptjs';
@@ -41,11 +41,11 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register(newUser).subscribe(
       (user) =>{
-        this.toastrService.showMessage("User " +  newUser.email + " wurde erstellt.", "SUCCESS");
+        this.toastrService.showMessage("User " +  newUser.email + " was created.", "SUCCESS");
         this.router.navigate(["/auth/login"])
       },
       (error)=>{
-        this.toastrService.showMessage("User " +  newUser.email + " konnte nicht erstellt werden.", "WARN");
+        this.toastrService.showMessage("User " +  newUser.email + " could not be created.", "WARN");
         this.router.navigate(["/auth/register"])
       }
     );

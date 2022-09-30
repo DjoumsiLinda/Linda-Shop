@@ -28,4 +28,12 @@ export class UserService {
       })
     );
   }
+  updateUser(user:User): Observable<User> {
+    return this.http.post<User>('http://localhost:8080/shop/update', user).pipe(
+      map((e) => e ),
+      catchError((error) => {
+        return throwError(error.status);
+      })
+    );
+  }
 }
